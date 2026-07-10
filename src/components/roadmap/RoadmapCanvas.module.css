@@ -1,0 +1,362 @@
+.canvasContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  width: 100%;
+}
+
+/* Toolbar & Stats Styles */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--glass-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+}
+
+.statsPanel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-grow: 1;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statVal {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--accent-indigo);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.progressBarWrapper {
+  flex-grow: 1;
+  max-width: 280px;
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-indigo), var(--accent-violet));
+  border-radius: var(--radius-full);
+  transition: width var(--transition-normal);
+}
+
+.statCounts {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-md);
+  color: var(--text-muted);
+}
+
+.searchInput {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) var(--spacing-2xl);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  color: var(--text-primary);
+  width: 200px;
+  transition: all var(--transition-fast);
+}
+
+.searchInput:focus {
+  border-color: var(--accent-indigo);
+  outline: none;
+  width: 240px;
+  box-shadow: 0 0 10px var(--accent-indigo-glow);
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.filterBtn:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color-hover);
+}
+
+.filterBtnActive {
+  background: var(--accent-rose-glow);
+  color: var(--accent-rose);
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+/* Roadmap tree visualization styles */
+.roadmapTree {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+  position: relative;
+  padding-left: var(--spacing-xl);
+}
+
+/* Vertical line representing the central timeline spine */
+.roadmapTree::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-indigo) 0%, var(--accent-violet) 50%, var(--bg-tertiary) 100%);
+  opacity: 0.3;
+}
+
+.phaseContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.phaseHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  position: relative;
+  z-index: 2;
+}
+
+/* Rounded counter dot on spine line */
+.phaseNumber {
+  width: 42px;
+  height: 42px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-indigo);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--accent-indigo);
+  box-shadow: 0 0 15px var(--accent-indigo-glow);
+}
+
+.phaseInfo {
+  flex-grow: 1;
+}
+
+.phaseTitle {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.phaseDesc {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+.nodesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  padding-left: 58px;
+  position: relative;
+}
+
+.nodeAndConnector {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Horizontal connectors between nodes in a phase */
+.connectorLine {
+  width: 24px;
+  height: 2px;
+  background: var(--border-color);
+  margin-right: -4px;
+  z-index: 1;
+}
+
+/* Node card styling */
+.nodeCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: left;
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index: 2;
+}
+
+.nodeCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-color-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.nodeHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.nodeLabel {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.nodeFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+}
+
+.importanceIndicator {
+  font-size: 9px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.importanceIndicator.critical { color: var(--accent-rose); }
+.importanceIndicator.recommended { color: var(--accent-indigo); }
+.importanceIndicator.optional { color: var(--text-muted); }
+
+.resourcesCount {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Node States */
+.completed {
+  background: var(--accent-emerald-glow);
+  border-color: rgba(16, 185, 129, 0.4);
+}
+.completed:hover {
+  border-color: var(--accent-emerald);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+}
+
+.completedIcon { color: var(--accent-emerald); }
+
+.in-progress {
+  background: var(--accent-amber-glow);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.in-progress:hover {
+  border-color: var(--accent-amber);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+}
+
+.inProgressIcon { color: var(--accent-amber); }
+.pendingIcon { color: var(--text-muted); }
+
+/* Highlight styling when matching user filters */
+.highlightNode {
+  animation: pulseGlow 1.5s infinite;
+  --glow-color: var(--accent-indigo-glow);
+  border-color: var(--accent-indigo);
+}
+
+.criticalBorder {
+  border-left: 3px solid var(--accent-rose);
+}
+
+/* Media Breakpoints */
+@media (max-width: 1024px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+  
+  .statsPanel {
+    width: 100%;
+  }
+  
+  .progressBarWrapper {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmapTree {
+    padding-left: 0;
+  }
+  
+  .roadmapTree::before {
+    display: none;
+  }
+  
+  .phaseNumber {
+    width: 32px;
+    height: 32px;
+    font-size: var(--fs-xs);
+  }
+  
+  .nodesWrapper {
+    padding-left: 0;
+    flex-direction: column;
+  }
+  
+  .nodeAndConnector {
+    width: 100%;
+  }
+  
+  .connectorLine {
+    display: none;
+  }
+  
+  .nodeCard {
+    width: 100%;
+  }
+}

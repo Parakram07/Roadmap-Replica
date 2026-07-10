@@ -1,0 +1,233 @@
+.roadmapViewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  max-width: var(--max-width-container);
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+  width: 100%;
+}
+
+.navigationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  transition: color var(--transition-fast);
+}
+
+.backBtn:hover {
+  color: var(--text-primary);
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.crumb {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.crumb:hover {
+  color: var(--text-primary);
+}
+
+.separator {
+  color: var(--text-muted);
+}
+
+.activeCrumb {
+  color: var(--text-muted);
+}
+
+/* Header Section Styles */
+.roadmapHeader {
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  margin: 0 var(--spacing-lg);
+}
+
+.headerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-3xl);
+  align-items: center;
+}
+
+.titleCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.metaBadgeGroup {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.categoryBadge {
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.categoryBadge.role {
+  background: var(--accent-indigo-glow);
+  color: var(--accent-indigo);
+}
+
+.categoryBadge.skill {
+  background: var(--accent-violet-glow);
+  color: var(--accent-violet);
+}
+
+.title {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.statsCardCol {
+  background: rgba(9, 13, 22, 0.4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.specItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.specIconIndigo { color: var(--accent-indigo); }
+.specIconViolet { color: var(--accent-violet); }
+.specIconEmerald { color: var(--accent-emerald); }
+
+.specText {
+  display: flex;
+  flex-direction: column;
+}
+
+.specVal {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.specLabel {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Canvas & Layout Section */
+.canvasSection {
+  padding: 0 var(--spacing-lg);
+}
+
+.layoutColumns {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.mainCanvas {
+  min-width: 0; /* Prevents flex boxes from stretching past container width */
+}
+
+/* Sidebar styles */
+.outlineSidebar {
+  position: sticky;
+  top: 96px; /* offset of sticky header */
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sidebarTitle {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.sidebarList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.phaseIdx {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--accent-indigo);
+}
+
+.sidebarItemContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarItemTitle {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+}
+
+.sidebarItemNodesCount {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Responsive Media breakpoints */
+@media (max-width: 1024px) {
+  .headerGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .layoutColumns {
+    grid-template-columns: 1fr;
+  }
+  
+  .outlineSidebar {
+    display: none;
+  }
+}
