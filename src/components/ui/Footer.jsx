@@ -16,7 +16,7 @@ export default function Footer() {
                 <circle cx="12" cy="8" r="1.5" fill="currentColor" />
               </svg>
             </div>
-            <span className={styles.logoText}>Pathify</span>
+            <span className={styles.logoText}>YojanaMap</span>
           </div>
           <p className={styles.description}>
             Explore and track modern developer learning paths. Crafted with precision to accelerate your technical skills.
@@ -46,12 +46,10 @@ export default function Footer() {
       <div className={styles.bottomBar}>
         <div className={styles.bottomContainer}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Pathify. All rights reserved.
+            &copy; {new Date().getFullYear()} YojanaMap. All rights reserved.
           </p>
           <div className={styles.credits}>
-            <span>Made with</span>
-            <Heart size={14} className={styles.heartIcon} />
-            <span>by Shobha and the Gang.</span>
+            <span>Made by: Shobha and the Gang.</span>
           </div>
           <div className={styles.socials}>
             <a href="#" className={styles.socialLink} aria-label="Twitter"><Twitter size={18} /></a>

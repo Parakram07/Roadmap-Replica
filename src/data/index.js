@@ -10,6 +10,12 @@ import { dataScientistData } from './dataScientistData';
 import { nodejsData } from './nodejsData';
 import { dockerData } from './dockerData';
 import { typescriptData } from './typescriptData';
+import { loksewaData } from './loksewaData';
+import { bankingData } from './bankingData';
+import { teachingData } from './teachingData';
+import { policeArmyData } from './policeArmyData';
+import { uiuxData } from './uiuxData';
+import { videoCreatorData } from './videoCreatorData';
 
 export const roadmaps = {
   frontend: frontendData,
@@ -24,19 +30,31 @@ export const roadmaps = {
   nodejs: nodejsData,
   docker: dockerData,
   typescript: typescriptData,
+  loksewa: loksewaData,
+  banking: bankingData,
+  teaching: teachingData,
+  policearmy: policeArmyData,
+  uiux: uiuxData,
+  videocreator: videoCreatorData,
 };
 
 export const roadmapList = [
+  loksewaData,
+  bankingData,
+  teachingData,
+  policeArmyData,
   frontendData,
+  dataScientistData,
+  uiuxData,
+  videoCreatorData,
   backendData,
-  devopsData,
-  reactData,
-  gitData,
   fullstackData,
   mobileData,
   cybersecurityData,
-  dataScientistData,
+  devopsData,
+  reactData,
   nodejsData,
   dockerData,
   typescriptData,
+  gitData,
 ];

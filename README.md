@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="src/components/ui/logo.svg" alt="Pathify Logo" width="80" height="80" />
+  <img src="src/components/ui/logo.svg" alt="YojanaMap Logo" width="80" height="80" />
 </p>
 
-<h1 align="center">Pathify</h1>
+<h1 align="center">YojanaMap</h1>
 
 <p align="center">
   <strong>An interactive, enterprise-grade developer learning platform for structured career roadmaps.</strong>
@@ -25,9 +25,9 @@
 
 ## 📖 About
 
-**Pathify** is a modern, fully responsive web application inspired by [roadmap.sh](https://roadmap.sh/) — built from the ground up as a premium educational platform that helps developers navigate their engineering careers through interactive, visual learning pathways.
+**YojanaMap** is a modern, fully responsive web application inspired by [roadmap.sh](https://roadmap.sh/) — built from the ground up as a premium educational platform that helps developers navigate their engineering careers through interactive, visual learning pathways.
 
-Unlike a simple clone, Pathify is a content-rich, enterprise-level application featuring **12 comprehensive roadmaps**, a **global command palette search**, a **side-by-side path comparison tool**, **persistent progress tracking** via localStorage, a **dark/light theme toggle**, and **glassmorphism UI design** — all wrapped in smooth micro-animations and premium aesthetics.
+Unlike a simple clone, YojanaMap is a content-rich, enterprise-level application featuring **12 comprehensive roadmaps**, a **global command palette search**, a **side-by-side path comparison tool**, **persistent progress tracking** via localStorage, a **dark/light theme toggle**, and **glassmorphism UI design** — all wrapped in smooth micro-animations and premium aesthetics.
 
 ---
 
@@ -182,7 +182,7 @@ Roadmap-Replica/
 │   │       ├── SearchPalette.module.css
 │   │       ├── SkeletonLoader.jsx   # Shimmer loading placeholders
 │   │       ├── SkeletonLoader.module.css
-│   │       └── logo.svg             # Pathify brand logo
+│   │       └── logo.svg             # YojanaMap brand logo
 │   ├── context/
 │   │   └── ProgressContext.jsx      # React Context for progress + theme state
 │   ├── data/
@@ -222,7 +222,7 @@ Roadmap-Replica/
 
 ## 🗺️ Roadmaps Available
 
-Pathify ships with **12 comprehensive roadmaps**, categorized into Role-Based and Skill-Based paths:
+YojanaMap ships with **12 comprehensive roadmaps**, categorized into Role-Based and Skill-Based paths:
 
 ### Role-Based Paths (7)
 | Roadmap | Icon | Difficulty | Duration | Topics |
@@ -319,7 +319,7 @@ The application uses **React Context API** with `localStorage` persistence — n
 
 ### Routing Strategy
 
-Pathify uses a lightweight **hash-based SPA router** instead of React Router to keep the bundle lean:
+YojanaMap uses a lightweight **hash-based SPA router** instead of React Router to keep the bundle lean:
 
 | Route | View | Description |
 |-------|------|-------------|
@@ -335,7 +335,7 @@ View transitions include a **450ms skeleton loader delay** to create a premium l
 
 ### Color Palette
 
-Pathify uses a curated, dual-theme color system defined entirely in CSS custom properties:
+YojanaMap uses a curated, dual-theme color system defined entirely in CSS custom properties:
 
 **Dark Theme (Default)**
 | Token | Value | Usage |
