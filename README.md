@@ -1,22 +1,21 @@
 <p align="center">
-  <img src="src/components/ui/logo.svg" alt="YojanaMap Logo" width="80" height="80" />
+  <img src="src/components/ui/logo.svg" alt="YojanaMap Logo" width="90" height="90" />
 </p>
 
 <h1 align="center">YojanaMap</h1>
 
 <p align="center">
-  <strong>An interactive, enterprise-grade developer learning platform for structured career roadmaps.</strong>
+  <strong>Career Clarity for Nepali Students & Job Seekers — Interactive Step-by-Step Roadmaps for Sarkari, Tech & Creative Careers.</strong>
 </p>
 
 <p align="center">
+  <a href="#-about">About</a> •
   <a href="#-features">Features</a> •
+  <a href="#-roadmaps-available">Roadmaps (18)</a> •
+  <a href="#-brand-color-palette">Color Palette</a> •
   <a href="#-tech-stack">Tech Stack</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-project-structure">Project Structure</a> •
-  <a href="#-roadmaps-available">Roadmaps</a> •
-  <a href="#-architecture">Architecture</a> •
-  <a href="#-design-system">Design System</a> •
-  <a href="#-screenshots">Screenshots</a> •
   <a href="#-contributing">Contributing</a> •
   <a href="#-license">License</a>
 </p>
@@ -25,65 +24,110 @@
 
 ## 📖 About
 
-**YojanaMap** is a modern, fully responsive web application inspired by [roadmap.sh](https://roadmap.sh/) — built from the ground up as a premium educational platform that helps developers navigate their engineering careers through interactive, visual learning pathways.
+**YojanaMap** is a modern, fully responsive educational web application built specifically to empower **Nepali students, graduates, and aspiring professionals** with structured, visual career pathways.
 
-Unlike a simple clone, YojanaMap is a content-rich, enterprise-level application featuring **12 comprehensive roadmaps**, a **global command palette search**, a **side-by-side path comparison tool**, **persistent progress tracking** via localStorage, a **dark/light theme toggle**, and **glassmorphism UI design** — all wrapped in smooth micro-animations and premium aesthetics.
+Navigating education and career choices in Nepal often leads to confusion between competitive government examinations, banking careers, teaching licenses, creative digital media, and international tech roles. **YojanaMap** eliminates tutorial hell and fragmented preparation by organizing every goal into step-by-step interactive roadmaps backed by curated local and global learning resources.
+
+### 🇳🇵 Built for Nepali Students
+- **Sarkari & Lok Sewa Pathways**: Complete preparation blueprints for Section Officer (Sakha Adhikrit), Banking Exams (NRB, RBB, ADBL, NBL), TSC Teaching Licenses, and Police/Army Officers.
+- **Tech & Creative Pathways**: Guidance for Frontend Development, Data Science & AI, UI/UX Product Design, and Freelance Video Creation.
+- **Global Software Engineering**: Deep technical skill trees covering Backend, DevOps, Mobile, Full-Stack, Docker, Node.js, TypeScript, and Git.
+- **Bilingual Interface Support**: Quick toggle between English (`EN`) and Nepali (`नेपाली`) interface context.
 
 ---
 
 ## ✨ Features
 
 ### 🗺️ Interactive Roadmap Visualizer
-- **Visual node-based canvas** rendering each roadmap as interconnected topic nodes with dependency arrows.
-- **Color-coded node importance** indicators: critical (red), recommended (amber), and optional (gray).
-- **Click any node** to open a detailed knowledge drawer with tabbed content.
-- **Collapsible timeline lists** on mobile for responsive consumption.
-- **Node filtering** to search within a specific roadmap.
+- **Node-Based Canvas Graph**: Visual rendering of interconnected topic nodes with dependency directional indicators.
+- **Importance Hierarchy**: Color-coded nodes highlighting *Critical*, *Recommended*, and *Optional* topics.
+- **Detailed Knowledge Drawer**: Clicking any node opens a tabbed side drawer containing:
+  - **Overview** — Core concepts, learning objectives, best practices, and common mistakes.
+  - **Knowledge Base** — Curated links to free videos, official acts, and documentation.
+  - **Interview & Exam Prep** — Accordion model question & answer cards.
+  - **Practice & Projects** — Actionable practical projects and mock test assignments.
 
-### 📚 Deep Knowledge Drawer
-- **4 tabbed sections** per topic node:
-  - **Overview** — Description, learning objectives, best practices, and common mistakes.
-  - **Knowledge** — Curated external resource links (videos, articles, documentation).
-  - **Interview Prep** — Expandable accordion Q&A cards with detailed answers.
-  - **Practice** — Hands-on project suggestions with scope descriptions.
-- **Progress status toggling**: Mark nodes as *Completed*, *In Progress*, or *Unvisited* with one click.
+### 🎯 Smart Career Quiz Modal
+- **3-Step Recommendation Quiz**: Helps students discover their ideal career path based on:
+  1. Target Sector (*Sarkari / Lok Sewa*, *Tech & Engineering*, or *Creative & UX*).
+  2. Daily Preparation Time Commitment.
+  3. Preferred Working Style.
+- **Instant Path Launcher**: Directly opens the top-matched roadmap upon completion.
 
-### 🔍 Global Command Palette Search
-- **Trigger with** `/` or `Ctrl+K` keyboard shortcuts from anywhere in the app.
-- **Searches across all 12 roadmaps** — every node title, description, and phase name is indexed.
-- **Instant filtering** with highlighted results and direct navigation to specific roadmap nodes.
-- **Overlay modal** with backdrop blur and focus-trapped keyboard navigation.
+### 🔍 Central Embedded Header Search & Command Palette
+- **Navbar Search Bar**: Integrated search input (`Search careers, skills, Lok Sewa...`) right in the navigation header.
+- **Global Command Palette (`/` or `Ctrl+K`)**: Instant fuzzy search indexing all 18 roadmaps, nodes, objectives, and phases.
 
-### ⚖️ Side-by-Side Path Comparison
-- **Select any two roadmaps** from dropdown selectors and compare them head-to-head.
-- **Statistics comparison**: topic counts, estimated durations, difficulty levels, and phase breakdowns.
-- **Crossover analysis**: automatically detects overlapping fundamental topics between two paths.
-- **Salary estimation bands** per role/skill to inform career decisions.
+### ⚖️ Side-by-Side Path Comparison Tool
+- Compare any two career paths side-by-side.
+- Analyze topic counts, preparation durations, difficulty scaling, and overlapping fundamental skills.
 
-### 📊 Homepage Dashboard
-- **Hero section** with gradient text, animated glow effects, and a sparkle badge.
-- **Platform statistics panel**: learner counts, completion rates, and update indicators.
-- **Technology Radar grid**: trending tools and frameworks with growth percentage indicators.
-- **Curated Roadmap Catalog** with multi-axis filtering:
-  - **Category tabs**: All Paths / Developer Roles / Skills.
-  - **Experience level selector**: Beginner / Intermediate / Advanced.
-  - **Real-time text search** across titles and descriptions.
-- **Learning Methodology pipeline**: a 4-step visual process strip explaining the pedagogy.
-- **User testimonials carousel** with avatar badges and role attributions.
+### 📊 Interactive Hero Preview Illustration
+- Dynamic interactive preview widget on the homepage showcasing animated node progressions, live path highlights, and progress counters.
 
-### 🌗 Dark / Light Theme Toggle
-- **System-aware** theme initialization with manual override.
-- **Persistent theme preference** saved to `localStorage`.
-- **Full CSS custom property swap** — every component respects the active theme via `data-theme` attribute.
+### 📊 Persistent Progress Tracker & Auth Modal
+- Track completion progress (*Completed*, *In Progress*, *Unvisited*) saved persistently in browser `localStorage`.
+- Integrated **Sign In / Sign Up Modal** for user authentication interface.
 
-### ⚡ Skeleton Loading States
-- **Shimmer placeholder frames** during view transitions (450ms simulated latency for premium feel).
-- **Two loader variants**: `card-list` (for home grid) and `canvas` (for roadmap view).
+---
 
-### 📱 Fully Responsive Design
-- **Breakpoints** at 768px and 480px for seamless tablet and mobile experiences.
-- **Collapsible navigation** on mobile with hamburger menu toggle.
-- **Stacked card grids** and timeline-based roadmap layouts on smaller screens.
+## 🗺️ Roadmaps Available (18 Total)
+
+YojanaMap features **18 comprehensive roadmaps** tailored for Nepal's educational and job market landscape:
+
+### 🏛️ Sarkari & Lok Sewa Paths (4)
+| Roadmap | Category | Difficulty | Estimated Duration | Focus Area |
+|---------|----------|------------|-------------------|------------|
+| **Lok Sewa Officer** | Sarkari / Civil Service | Advanced | 8–12 months | Sakha Adhikrit & Nayab Subba GK, IQ, Governance & Laws |
+| **Banking Exams** | Sarkari / Financial | Intermediate | 6–9 months | Nepal Rastra Bank (NRB), BAFIA 2073, NFRS Accounting & Ratios |
+| **Teaching License** | Sarkari / Education | Intermediate | 4–6 months | TSC (Shikshak Sewa Aayog), Education Act 2028 & Pedagogy |
+| **Police / Army** | Sarkari / Security | Advanced | 6–10 months | Physical Fitness, Medical Standards, Service Knowledge & Written Exams |
+
+### 🎨 Creative & UX Paths (2)
+| Roadmap | Category | Difficulty | Estimated Duration | Focus Area |
+|---------|----------|------------|-------------------|------------|
+| **UI/UX Designer** | Tech / Creative | Intermediate | 4–6 months | Figma Auto-Layout, Design Systems, UX Research & Portfolios |
+| **Video Creator** | Tech / Creative | Intermediate | 3–5 months | Video Editing (Premiere/DaVinci), Sound Design, YouTube SEO & Freelancing |
+
+### 💻 Tech & Software Engineering Paths (7)
+| Roadmap | Category | Difficulty | Estimated Duration | Focus Area |
+|---------|----------|------------|-------------------|------------|
+| **Frontend Developer** | Software Engineering | Intermediate | 3–6 months | HTML/CSS, Modern JavaScript (ES6+), React & Web Systems |
+| **Data Scientist** | Software Engineering | Advanced | 10–12 months | Statistics, Python (Pandas/NumPy), SQL & Machine Learning |
+| **Backend Developer** | Software Engineering | Advanced | 4–6 months | Node.js, Express, Relational Databases (PostgreSQL) & Security |
+| **Full-Stack Developer** | Software Engineering | Advanced | 9–12 months | End-to-end Client/Server Integration & System Architecture |
+| **Mobile Developer** | Software Engineering | Advanced | 8–10 months | SwiftUI (iOS), Kotlin (Android) & React Native |
+| **Cybersecurity Engineer** | Software Engineering | Expert | 10–12 months | Network Security, Firewalls, Cryptography & Auditing |
+| **DevOps Engineer** | Software Engineering | Expert | 6–8 months | CI/CD Pipelines, Linux Server Admin, Nginx & Monitoring |
+
+### 🛠️ Specialized Skill Trees (5)
+| Roadmap | Category | Difficulty | Estimated Duration | Focus Area |
+|---------|----------|------------|-------------------|------------|
+| **React Developer** | Specialized Skill | Intermediate | 2–3 months | JSX, Component Lifecycle, Hooks, State & Routing |
+| **Node.js Developer** | Specialized Skill | Intermediate | 3–4 months | Event Loop, Libuv, Asynchronous I/O & REST Controllers |
+| **Docker & Containers** | Specialized Skill | Intermediate | 2–3 weeks | Dockerfiles, Multi-Stage Builds & Docker Compose Bridges |
+| **TypeScript Developer** | Specialized Skill | Intermediate | 1–2 months | Static Typings, Interfaces vs Types, Generics & Compiler Options |
+| **Git & GitHub** | Specialized Skill | Beginner | 1–2 weeks | Commits, Branching, Merging, Pull Requests & Version Control |
+
+---
+
+## 🎨 Brand Color Palette
+
+YojanaMap follows a nature-forward **Fresh & Structured** color system:
+
+| Swatch | Color Name | Hex Code | Role in Application |
+|:---:|-----------|----------|---------------------|
+| 🟩 | **Primary Dark Olive** | `#3D5A1E` | Primary headings, active tab pills, primary CTAs, main brand logo |
+| 🌿 | **Bright Olive** | `#6B9A38` | Sub-headings, active indicators, hover borders, leaf emblem branch |
+| 🍏 | **Light Green** | `#C8E6A0` | Soft green accent badges & success indicators |
+| 🪨 | **Pale Background** | `#EFF5E6` | Light nature-forward page background |
+| ⬜ | **White Card** | `#FFFFFF` | Clean white card backgrounds & modals |
+| ⬛ | **Charcoal Text** | `#2C2C2A` | Primary body text & high contrast typography |
+| 🟧 | **Warm Coral** | `#F07B5A` | Rocket emblem tip, "Map" logo accent, notification badges & warning highlights |
+
+### Brand Emblem & Logo
+- **Emblem**: Green `Y` (Bright Olive `#6B9A38` and Primary Dark Olive `#3D5A1E`) combined with a Warm Coral (`#F07B5A`) rocket tip pointing top-right.
+- **Logo Typography**: `<span style="color:#3D5A1E">Yojana</span><span style="color:#F07B5A">Map</span>`
 
 ---
 
@@ -91,22 +135,14 @@ Unlike a simple clone, YojanaMap is a content-rich, enterprise-level application
 
 | Layer | Technology | Version | Purpose |
 |-------|-----------|---------|---------|
-| **Framework** | [React](https://react.dev/) | `19.2.7` | Component-based UI library with hooks |
-| **Build Tool** | [Vite](https://vite.dev/) | `8.1.1` | Lightning-fast HMR dev server & production bundler |
-| **Icons** | [Lucide React](https://lucide.dev/) | `0.469.0` | 1000+ open-source SVG icons as React components |
-| **Styling** | CSS Modules + Custom Properties | — | Scoped component styles with global design tokens |
-| **Typography** | [Google Fonts — Poppins](https://fonts.google.com/specimen/Poppins) | — | Premium sans-serif typeface (300–800 weights) |
-| **Linting** | [OxLint](https://oxc.rs/docs/guide/usage/linter.html) | `1.71.0` | Blazing-fast Rust-based JavaScript linter |
-| **State** | React Context + localStorage | — | Global progress tracking with persistence |
-| **Routing** | Hash-based SPA routing | — | Custom `hashchange` listener with transition states |
-
-### Why These Choices?
-
-- **React 19** — Leverages the latest concurrent features and hooks API for optimal rendering.
-- **Vite 8** — Sub-second HMR and optimized production builds (~340 KB gzipped total bundle).
-- **CSS Modules** — Zero runtime CSS-in-JS overhead with guaranteed class name scoping. No Tailwind dependency.
-- **Lucide React 0.469.0** — Pinned to this version for stable brand icon availability (newer versions reorganize exports).
-- **No router library** — Hash routing keeps the bundle lean; the app has only 3 views (Home, Roadmap, Compare).
+| **Framework** | [React](https://react.dev/) | `19.2.7` | Component-based UI library with React Hooks |
+| **Build Tool** | [Vite](https://vite.dev/) | `8.1.1` | Instant HMR development server & production bundler |
+| **Icons** | [Lucide React](https://lucide.dev/) | `0.469.0` | Clean SVG icon collection as React components |
+| **Styling** | CSS Modules + Custom Properties | — | Component-scoped styling with global Brand Board CSS variables |
+| **Typography** | [Google Fonts — Poppins](https://fonts.google.com/specimen/Poppins) | — | Modern sans-serif typography |
+| **Linting** | [OxLint](https://oxc.rs/docs/guide/usage/linter.html) | `1.71.0` | Rust-powered JavaScript/React linter |
+| **State** | React Context + localStorage | — | Client-side progress tracking & theme persistence |
+| **Routing** | Hash-Based SPA Router | — | Lightweight hashchange routing without heavy bundle overhead |
 
 ---
 
@@ -115,48 +151,34 @@ Unlike a simple clone, YojanaMap is a content-rich, enterprise-level application
 ### Prerequisites
 
 - **Node.js** ≥ 18.0.0
-- **npm** ≥ 9.0.0 (ships with Node.js)
+- **npm** ≥ 9.0.0
 
-### Installation
+### Installation & Run
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/Parakram07/Roadmap-Replica.git
 
-# 2. Navigate into the project
+# 2. Navigate to project directory
 cd Roadmap-Replica
 
 # 3. Install dependencies
 npm install
 
-# 4. Start the development server
+# 4. Launch local development server
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173` by default.
+Open `http://localhost:5173` in your browser.
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start Vite development server with HMR |
-| `npm run build` | Create optimized production bundle in `dist/` |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run OxLint across all source files |
-
-### Production Build
-
-```bash
-npm run build
-```
-
-Build output:
-```
-dist/assets/logo-BoUdlyxe.svg     0.41 kB │ gzip:   0.24 kB
-dist/index.html                   1.92 kB │ gzip:   0.70 kB
-dist/assets/index-Cc38RWVA.css   51.07 kB │ gzip:   9.11 kB
-dist/assets/index-C_etrlsc.js   338.76 kB │ gzip: 104.85 kB
-```
+| Command | Action |
+|---------|--------|
+| `npm run dev` | Starts local Vite development server with HMR |
+| `npm run build` | Builds optimized production bundle in `dist/` |
+| `npm run preview` | Previews production build locally |
+| `npm run lint` | Runs OxLint across all project files |
 
 ---
 
@@ -164,266 +186,90 @@ dist/assets/index-C_etrlsc.js   338.76 kB │ gzip: 104.85 kB
 
 ```
 Roadmap-Replica/
-├── public/                          # Static public assets
+├── public/                          # Static assets
 ├── src/
-│   ├── assets/                      # Static assets (images, fonts)
+│   ├── assets/                      # Brand assets
 │   ├── components/
 │   │   ├── roadmap/
-│   │   │   ├── RoadmapCanvas.jsx    # Interactive node graph visualizer
+│   │   │   ├── RoadmapCanvas.jsx    # Interactive visual node canvas
 │   │   │   └── RoadmapCanvas.module.css
 │   │   └── ui/
-│   │       ├── Drawer.jsx           # Tabbed knowledge panel (4 tabs)
+│   │       ├── AuthModal.jsx        # Sign In / Sign Up modal
+│   │       ├── AuthModal.module.css
+│   │       ├── CareerQuizModal.jsx  # Smart 3-step career quiz modal
+│   │       ├── CareerQuizModal.module.css
+│   │       ├── Drawer.jsx           # Detailed knowledge drawer (4 tabs)
 │   │       ├── Drawer.module.css
-│   │       ├── Footer.jsx           # Site-wide footer component
+│   │       ├── Footer.jsx           # Footer component
 │   │       ├── Footer.module.css
-│   │       ├── Header.jsx           # Sticky navigation bar
+│   │       ├── Header.jsx           # Header bar with search, lang toggle & sign in
 │   │       ├── Header.module.css
-│   │       ├── SearchPalette.jsx    # Global command palette (Ctrl+K)
+│   │       ├── MapPreviewIllustration.jsx # Hero map preview widget
+│   │       ├── MapPreviewIllustration.module.css
+│   │       ├── SearchPalette.jsx    # Global command palette search modal
 │   │       ├── SearchPalette.module.css
 │   │       ├── SkeletonLoader.jsx   # Shimmer loading placeholders
-│   │       ├── SkeletonLoader.module.css
-│   │       └── logo.svg             # YojanaMap brand logo
+│   │       └── logo.svg
 │   ├── context/
-│   │   └── ProgressContext.jsx      # React Context for progress + theme state
+│   │   └── ProgressContext.jsx      # Progress & theme context provider
 │   ├── data/
-│   │   ├── index.js                 # Central registry exporting all 12 roadmaps
+│   │   ├── index.js                 # Central registry for all 18 roadmaps
+│   │   ├── loksewaData.js           # Lok Sewa Sakha Adhikrit roadmap
+│   │   ├── bankingData.js           # Banking Exams (NRB & A-Class) roadmap
+│   │   ├── teachingData.js          # TSC Teaching License roadmap
+│   │   ├── policeArmyData.js        # Police / Army Officer recruitment roadmap
+│   │   ├── uiuxData.js              # UI/UX Product Designer roadmap
+│   │   ├── videoCreatorData.js      # Video Creator & Editor roadmap
 │   │   ├── frontendData.js          # Frontend Developer roadmap
 │   │   ├── backendData.js           # Backend Developer roadmap
 │   │   ├── devopsData.js            # DevOps Engineer roadmap
-│   │   ├── reactData.js             # React Developer roadmap
-│   │   ├── gitData.js               # Git & GitHub roadmap
 │   │   ├── fullstackData.js         # Full-Stack Developer roadmap
 │   │   ├── mobileData.js            # Mobile Developer roadmap
 │   │   ├── cybersecurityData.js     # Cybersecurity Engineer roadmap
 │   │   ├── dataScientistData.js     # Data Scientist roadmap
 │   │   ├── nodejsData.js            # Node.js Developer roadmap
 │   │   ├── dockerData.js            # Docker & Containers roadmap
-│   │   └── typescriptData.js        # TypeScript Developer roadmap
+│   │   ├── typescriptData.js        # TypeScript Developer roadmap
+│   │   ├── reactData.js             # React Developer roadmap
+│   │   └── gitData.js               # Git & GitHub roadmap
 │   ├── pages/
-│   │   ├── Home.jsx                 # Landing page with catalog, dashboard, filters
+│   │   ├── Home.jsx                 # Homepage with hero, path search & catalog grid
 │   │   ├── Home.module.css
-│   │   ├── RoadmapView.jsx          # Individual roadmap page wrapper
+│   │   ├── RoadmapView.jsx          # Roadmap canvas page view
 │   │   ├── RoadmapView.module.css
-│   │   ├── RoadmapCompare.jsx       # Side-by-side comparison tool
+│   │   ├── RoadmapCompare.jsx       # Side-by-side comparison tool page
 │   │   └── RoadmapCompare.module.css
 │   ├── styles/
-│   │   └── variables.css            # Global CSS design tokens & theme variables
-│   ├── App.jsx                      # Root component with hash routing
-│   ├── App.css                      # Root layout styles
-│   ├── index.css                    # Global resets and base styles
-│   └── main.jsx                     # React DOM entry point
+│   │   └── variables.css            # Brand Board design tokens & variables
+│   ├── App.jsx                      # App root component & hash router
+│   ├── index.css                    # Base resets & global styles
+│   └── main.jsx                     # Application entry point
 ├── index.html                       # HTML shell with SEO meta tags
 ├── vite.config.js                   # Vite configuration
-├── package.json                     # Dependencies and scripts
-└── .gitignore                       # Git ignore rules
+├── package.json                     # Node.js project configuration
+└── README.md                        # Documentation
 ```
-
----
-
-## 🗺️ Roadmaps Available
-
-YojanaMap ships with **12 comprehensive roadmaps**, categorized into Role-Based and Skill-Based paths:
-
-### Role-Based Paths (7)
-| Roadmap | Icon | Difficulty | Duration | Topics |
-|---------|------|------------|----------|--------|
-| Frontend Developer | `Layout` | Beginner | 3–6 months | 14 |
-| Backend Developer | `Server` | Intermediate | 4–6 months | 10 |
-| DevOps Engineer | `GitBranch` | Advanced | 6–8 months | 7 |
-| Full-Stack Developer | `Layers` | Advanced | 9–12 months | 12 |
-| Mobile Developer | `Smartphone` | Advanced | 8–10 months | 10 |
-| Cybersecurity Engineer | `Shield` | Expert | 10–12 months | 9 |
-| Data Scientist | `LineChart` | Advanced | 10–12 months | 11 |
-
-### Skill-Based Paths (5)
-| Roadmap | Icon | Difficulty | Duration | Topics |
-|---------|------|------------|----------|--------|
-| React Developer | `Atom` | Intermediate | 2–3 months | 7 |
-| Git & GitHub | `GitPullRequest` | Beginner | 1–2 weeks | 5 |
-| Node.js Developer | `Cpu` | Intermediate | 3–4 months | 8 |
-| Docker & Containers | `Box` | Intermediate | 2–3 weeks | 6 |
-| TypeScript Developer | `Code` | Intermediate | 1–2 months | 6 |
-
-### Roadmap Data Schema
-
-Each roadmap file follows a consistent data structure:
-
-```javascript
-{
-  id: 'string',              // Unique identifier
-  title: 'string',           // Display name
-  description: 'string',     // Summary paragraph
-  category: 'role' | 'skill',
-  icon: 'string',            // Lucide icon name
-  stats: {
-    duration: 'string',      // Estimated completion time
-    difficulty: 'string',    // Beginner | Intermediate | Advanced | Expert
-    topics: number           // Total topic count
-  },
-  phases: [
-    {
-      id: 'string',
-      title: 'string',       // Phase heading
-      description: 'string',
-      nodes: [
-        {
-          id: 'string',
-          label: 'string',
-          importance: 'critical' | 'recommended' | 'optional',
-          description: 'string',
-          objectives: ['string'],
-          bestPractices: ['string'],
-          mistakes: ['string'],
-          tips: 'string',
-          project: { name: 'string', desc: 'string' },
-          interview: [{ q: 'string', a: 'string' }],
-          dependsOn: ['nodeId'],
-          resources: [{ title: 'string', url: 'string', type: 'video' | 'link' }]
-        }
-      ]
-    }
-  ]
-}
-```
-
----
-
-## 🏗️ Architecture
-
-### Application Flow
-
-```
-index.html
-  └── main.jsx (React DOM root)
-        └── App.jsx (Hash Router + Layout Shell)
-              ├── ProgressProvider (Context)
-              ├── Header (Sticky Navigation)
-              ├── <main> (View Switcher)
-              │     ├── Home (Catalog + Dashboard)
-              │     ├── RoadmapView → RoadmapCanvas → Drawer
-              │     └── RoadmapCompare
-              ├── Footer
-              └── SearchPalette (Global Overlay)
-```
-
-### State Management
-
-The application uses **React Context API** with `localStorage` persistence — no external state libraries.
-
-| State | Scope | Persistence |
-|-------|-------|-------------|
-| `progress` | Global (Context) | `localStorage` key: `roadmap_progress` |
-| `theme` | Global (Context) | `localStorage` key: `roadmap_theme` |
-| `currentView` | App-level (useState) | URL hash fragment |
-| `searchQuery`, `activeTab`, `selectedLevel` | Page-level (useState) | None (resets on navigation) |
-
-### Routing Strategy
-
-YojanaMap uses a lightweight **hash-based SPA router** instead of React Router to keep the bundle lean:
-
-| Route | View | Description |
-|-------|------|-------------|
-| `#/` or `(empty)` | Home | Landing page with catalog grid |
-| `#/roadmap/:id` | RoadmapView | Interactive roadmap canvas |
-| `#/compare` | RoadmapCompare | Side-by-side path comparison |
-
-View transitions include a **450ms skeleton loader delay** to create a premium loading experience.
-
----
-
-## 🎨 Design System
-
-### Color Palette
-
-YojanaMap uses a curated, dual-theme color system defined entirely in CSS custom properties:
-
-**Dark Theme (Default)**
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--bg-primary` | `#090d16` | Page background |
-| `--bg-secondary` | `#0f172a` | Card backgrounds |
-| `--accent-indigo` | `#6366f1` | Primary accent, active states |
-| `--accent-violet` | `#8b5cf6` | Secondary accent, gradients |
-| `--accent-emerald` | `#10b981` | Success, completion status |
-| `--accent-amber` | `#f59e0b` | Warning, in-progress status |
-| `--accent-rose` | `#f43f5e` | Critical importance, errors |
-
-**Light Theme**
-Activated via `[data-theme="light"]` selector — swaps backgrounds to whites/grays and adjusts glow opacities.
-
-### Glassmorphism
-
-Components use a shared `.glass-panel` utility:
-- **Background**: Semi-transparent (`rgba`) with `backdrop-filter: blur(12px)`
-- **Border**: 1px solid with 5–8% white opacity
-- **Shadow**: Deep `box-shadow` for floating depth
-
-### Typography
-
-- **Font Family**: `Poppins` (Google Fonts) with system font fallbacks
-- **Scale**: 8 sizes from `0.75rem` (xs) to `3rem` (5xl)
-- **Weights**: Light (300) through Extra-Bold (800)
-
-### Animations
-
-- **Transition speeds**: Fast (0.15s), Normal (0.3s), Slow (0.5s), Spring (cubic-bezier bounce)
-- **Hover effects**: Scale transforms, border glow intensification, background opacity shifts
-- **Skeleton shimmer**: CSS gradient animation cycling from dark to lighter tones
-- **Hero glow**: Animated radial gradient pulse behind the hero heading
-
----
-
-## 🖼️ Screenshots
-
-> Run `npm run dev` and navigate through the application to see:
-> - **Home Page** — Hero section, dashboard stats, technology radar, filtered catalog grid
-> - **Roadmap Canvas** — Interactive node graph with color-coded importance levels
-> - **Knowledge Drawer** — Tabbed deep-dive panel with Overview, Resources, Interview, and Practice tabs
-> - **Comparison Tool** — Side-by-side roadmap stat breakdowns with crossover analysis
-> - **Command Palette** — Global search overlay triggered by `/` or `Ctrl+K`
-> - **Dark / Light Themes** — Full theme toggle with persistent preference
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how to get started:
+Contributions from the Nepali developer & student community are warmly welcomed!
 
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m "feat: add amazing feature"`
-4. **Push** to the branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
-
-### Adding a New Roadmap
-
-1. Create a new data file in `src/data/` following the [schema](#roadmap-data-schema) documented above.
-2. Import and register it in `src/data/index.js` (add to both `roadmaps` object and `roadmapList` array).
-3. Add the icon mapping in the `getIcon()` switch statement in `src/pages/Home.jsx`.
-4. Import the Lucide icon at the top of `Home.jsx`.
-5. Run `npm run build` to verify compilation.
-
-### Commit Convention
-
-This project follows [Conventional Commits](https://www.conventionalcommits.org/):
-
-| Prefix | Usage |
-|--------|-------|
-| `feat:` | New features |
-| `fix:` | Bug fixes |
-| `docs:` | Documentation changes |
-| `style:` | Code formatting (no logic changes) |
-| `refactor:` | Code restructuring |
-| `chore:` | Build/tooling changes |
+1. **Fork** the project repository.
+2. **Create** your feature branch: `git checkout -b feature/new-roadmap`
+3. **Commit** your changes: `git commit -m "feat: add Civil Engineering roadmap"`
+4. **Push** to your branch: `git push origin feature/new-roadmap`
+5. **Open** a Pull Request.
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 ---
 
 <p align="center">
-  Parakram K.C.
+  Built with ❤️ for Nepali Students & Developers
 </p>

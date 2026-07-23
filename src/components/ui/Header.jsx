@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useProgress } from '../../context/ProgressContext';
-import { Sun, Moon, Search, Globe, ArrowRightLeft, User } from 'lucide-react';
+import { Sun, Moon, Search, Globe, ArrowRightLeft, User, Compass } from 'lucide-react';
 import AuthModal from './AuthModal';
 import styles from './Header.module.css';
 
@@ -17,24 +17,30 @@ export default function Header({ onSearchClick }) {
     <>
       <header className={`${styles.header} glass-panel`}>
         <div className={styles.container}>
-          {/* Logo Group */}
+          {/* Logo Group (Matching Brand Board) */}
           <div className={styles.logoGroup}>
             <a href="/" className={styles.logoLink}>
-              <div className={styles.logoIcon}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M4 3h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
-                  <path d="M10 13v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8" />
-                  <path d="M14 13v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4" />
-                  <circle cx="12" cy="8" r="1.5" fill="currentColor" />
+              <div className={styles.logoIconContainer}>
+                {/* Brand Board Emblem: Green Y with Warm Coral Rocket Arrow Tip */}
+                <svg viewBox="0 0 36 36" fill="none" className={styles.brandEmblemSvg}>
+                  {/* Stem of Y */}
+                  <rect x="15" y="18" width="6" height="14" rx="3" fill="#3D5A1E" />
+                  {/* Left branch of Y */}
+                  <path d="M16 20L6 8C5.2 7 6 5.5 7.2 5.5H11C12 5.5 12.8 6 13.4 6.8L18 13.5L16 20Z" fill="#6B9A38" />
+                  {/* Right branch of Y */}
+                  <path d="M20 20L30 8C30.8 7 30 5.5 28.8 5.5H25C24 5.5 23.2 6 22.6 6.8L18 13.5L20 20Z" fill="#3D5A1E" />
+                  {/* Rocket tip pointing top-right */}
+                  <path d="M26 4L32 5.5L30.5 11.5L28.5 8.5L26 4Z" fill="#F07B5A" />
                 </svg>
               </div>
               <span className={styles.logoText}>
-                Yojana<span className={styles.logoHighlight}>Map</span>
+                <span className={styles.logoPrimary}>Yojana</span>
+                <span className={styles.logoAccent}>Map</span>
               </span>
             </a>
           </div>
 
-          {/* Central Header Search Bar (matching screenshot) */}
+          {/* Central Header Search Bar */}
           <div className={styles.centerSearchWrapper} onClick={onSearchClick}>
             <Search size={16} className={styles.searchIcon} />
             <input 
@@ -63,16 +69,6 @@ export default function Header({ onSearchClick }) {
               <span className={styles.langLabel}>
                 {lang === 'EN' ? 'EN / नेपाली' : 'नेपाली / EN'}
               </span>
-            </button>
-
-            {/* Theme Toggle */}
-            <button 
-              className={styles.themeToggle} 
-              onClick={toggleTheme} 
-              aria-label="Toggle theme"
-              title="Toggle Theme"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
             {/* Sign in Button */}
