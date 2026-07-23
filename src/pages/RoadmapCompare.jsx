@@ -1,130 +1,122 @@
 import React, { useState } from 'react';
+import { useProgress } from '../context/ProgressContext';
 import { roadmapList } from '../data';
 import { ArrowRightLeft, DollarSign, Briefcase, Zap, ShieldAlert, Sparkles, BookOpen, Layers } from 'lucide-react';
 import styles from './RoadmapCompare.module.css';
 
 export default function RoadmapCompare({ onSelectRoadmap }) {
-  const [leftPathId, setLeftPathId] = useState('frontend');
-  const [rightPathId, setRightPathId] = useState('backend');
+  const { language, t, getLocalizedRoadmap } = useProgress();
+  const [leftPathId, setLeftPathId] = useState('loksewa');
+  const [rightPathId, setRightPathId] = useState('frontend');
 
-  const leftPath = roadmapList.find(r => r.id === leftPathId);
-  const rightPath = roadmapList.find(r => r.id === rightPathId);
+  const rawLeftPath = roadmapList.find(r => r.id === leftPathId);
+  const rawRightPath = roadmapList.find(r => r.id === rightPathId);
+
+  const leftPath = getLocalizedRoadmap(rawLeftPath);
+  const rightPath = getLocalizedRoadmap(rawRightPath);
 
   // Mocked comparison metric databases for high fidelity values
   const pathMetrics = {
-    frontend: {
-      salary: '$112,000 / year',
-      demand: 'Very High (18% YoY Growth)',
+    loksewa: {
+      salary: language === 'NP' ? 'रु. ४५,००० - ७०,००० / महिना' : 'NPR 45,000 - 70,000 / mo',
+      demand: language === 'NP' ? 'अत्यधिक उच्च (स्थायी सरकारी सेवा)' : 'Very High (Permanent Civil Service)',
+      difficulty: 'Advanced',
+      primaryFocus: language === 'NP' ? 'निजामती प्रशासन, कानून, सामान्य ज्ञान, IQ र समसामयिक व्यवस्थापन।' : 'Civil service, law, GK, IQ, and contemporary governance.',
+      languages: 'Nepali, English',
+      tools: 'Gorkhapatra, RSS News, Nepal Law Commission, PSC Gazette',
+      fundamentals: ['gk-nepal', 'iq-reasoning', 'governance-admin']
+    },
+    banking: {
+      salary: language === 'NP' ? 'रु. ४०,००० - ८५,००० / महिना' : 'NPR 40,000 - 85,000 / mo',
+      demand: language === 'NP' ? 'उच्च माग (क-वर्गका बैंक तथा NRB)' : 'High Demand (NRB & Class-A Banks)',
       difficulty: 'Intermediate',
-      primaryFocus: 'User interface components, responsive styles, state management, client rendering.',
+      primaryFocus: language === 'NP' ? 'बैंकिङ कानून, वित्तीय लेखा, NRB निर्देशन र मौद्रिक नीति।' : 'Banking law, accounting, NRB directives, and monetary policy.',
+      languages: 'English, Nepali',
+      tools: 'NFRS, Balance Sheets, NRB Unified Directives',
+      fundamentals: ['nrb-act', 'accounting-finance']
+    },
+    frontend: {
+      salary: language === 'NP' ? 'रु. ५०,००० - २,५०,०००+ / महिना' : 'NPR 50,000 - 250,000+ / mo',
+      demand: language === 'NP' ? 'अत्यधिक उच्च (रिमोट कार्य सम्भावना)' : 'Very High (Remote & Global Jobs)',
+      difficulty: 'Intermediate',
+      primaryFocus: language === 'NP' ? 'वेब प्रयोगकर्ता इन्टरफेस, रियाक्ट (React), CSS लेआउट र जाभास्क्रिप्ट।' : 'User interfaces, responsive CSS, React, and JavaScript ES6+.',
       languages: 'JavaScript, HTML, CSS, TypeScript',
-      tools: 'Vite, npm/pnpm, Git, Chrome DevTools',
-      fundamentals: ['internet', 'html', 'css', 'javascript', 'git', 'package-managers', 'vite', 'web-security']
+      tools: 'Vite, Git, Chrome DevTools, React',
+      fundamentals: ['internet', 'html-css-js', 'react-fundamentals']
     },
     backend: {
-      salary: '$124,000 / year',
-      demand: 'Extremely High (22% YoY Growth)',
+      salary: language === 'NP' ? 'रु. ६०,००० - ३,००,०००+ / महिना' : 'NPR 60,000 - 300,000+ / mo',
+      demand: language === 'NP' ? 'अत्यधिक उच्च (सर्भर तथा डाटाबेस)' : 'Extremely High (Server & Databases)',
       difficulty: 'Advanced',
-      primaryFocus: 'Database transactions, Web servers, API design, session credentials, system tasks.',
-      languages: 'Node.js (JS/TS), Python, Go, SQL',
-      tools: 'PostgreSQL, MongoDB, Prisma ORM, Docker, Express',
-      fundamentals: ['cli-terminal', 'nodejs', 'git', 'package-managers', 'web-security']
-    },
-    devops: {
-      salary: '$135,000 / year',
-      demand: 'High (Docker/K8s specialization)',
-      difficulty: 'Expert',
-      primaryFocus: 'Server deployments, CI/CD pipelines, container orchestration, monitoring, automation.',
-      languages: 'Bash, Python, YAML, Go',
-      tools: 'Docker, Kubernetes, Terraform, Ansible, Nginx, Prometheus',
-      fundamentals: ['linux-admin', 'dns-networking', 'git', 'web-security']
-    },
-    react: {
-      salary: '$118,000 / year',
-      demand: 'Very High (Most requested library)',
-      difficulty: 'Intermediate',
-      primaryFocus: 'Component structures, hook cycles, custom logic hooks, TanStack queries.',
-      languages: 'JSX, JavaScript, TypeScript',
-      tools: 'Vite, React DevTools, Zustand, React Router',
-      fundamentals: ['react-js-essentials', 'vite-react-setup']
-    },
-    git: {
-      salary: 'Essential Core Skill',
-      demand: 'Required for all engineering roles',
-      difficulty: 'Beginner',
-      primaryFocus: 'Branch merges, commit snapshots, logs inspect, remote GitHub collaboration.',
-      languages: 'Bash commands',
-      tools: 'Git CLI, GitHub Desktop, SourceTree',
-      fundamentals: ['vcs-intro', 'git-config']
+      primaryFocus: language === 'NP' ? 'सर्भर आर्किटेक्चर, API, रिलेसनल डाटाबेस र सेक्युरिटी।' : 'Server architecture, REST APIs, PostgreSQL DB, and sessions.',
+      languages: 'Node.js, Python, SQL, TypeScript',
+      tools: 'Express, PostgreSQL, Docker, Prisma',
+      fundamentals: ['nodejs', 'relational-db']
     }
   };
 
-  const leftMetrics = pathMetrics[leftPathId];
-  const rightMetrics = pathMetrics[rightPathId];
-
-  // Calculate overlapping fundamentals
-  const overlappingKeys = leftMetrics.fundamentals.filter(val => rightMetrics.fundamentals.includes(val));
-  
-  // Resolve overlapping node titles
-  const getOverlappingTitles = () => {
-    const titles = [];
-    const allNodes = [...leftPath.phases.flatMap(p => p.nodes), ...rightPath.phases.flatMap(p => p.nodes)];
-    overlappingKeys.forEach(key => {
-      const match = allNodes.find(n => n.id === key);
-      if (match && !titles.includes(match.label)) {
-        titles.push(match.label);
-      }
-    });
-    // Add default shared items if list is empty for presentation
-    if (titles.length === 0) return ['Git Version Control', 'Basic CLI Navigation'];
-    return titles;
+  const defaultMetrics = {
+    salary: language === 'NP' ? 'प्रतिस्पर्धी पारिश्रमिक' : 'Competitive Market Standard',
+    demand: language === 'NP' ? 'उच्च बजार माग' : 'High Market Demand',
+    difficulty: 'Intermediate',
+    primaryFocus: language === 'NP' ? 'विशेषीकृत सीप तथा अभ्यास।' : 'Specialized core concepts and practical application.',
+    languages: 'English',
+    tools: 'Industry Standard Tools',
+    fundamentals: []
   };
 
-  const sharedTopics = getOverlappingTitles();
+  const leftMetrics = pathMetrics[leftPathId] || defaultMetrics;
+  const rightMetrics = pathMetrics[rightPathId] || defaultMetrics;
+
+  const leftFundamentals = new Set(leftMetrics.fundamentals || []);
+  const rightFundamentals = new Set(rightMetrics.fundamentals || []);
+  const sharedOverlap = [...leftFundamentals].filter(x => rightFundamentals.has(x));
 
   return (
     <div className={styles.compareContainer}>
-      {/* Header section */}
+      
+      {/* Header */}
       <section className={styles.header}>
         <div className={styles.badgeLabel}>
-          <Layers size={12} />
-          <span>Path Comparison Utility</span>
+          <Sparkles size={14} className={styles.sparkleIcon} />
+          <span>{t('compareTitle')}</span>
         </div>
-        <h1 className={styles.title}>Compare Learning Paths</h1>
-        <p className={styles.subtitle}>
-          Analyze salary projections, workload demands, shared fundamentals, and specialized skillsets side-by-side to choose your ideal career direction.
-        </p>
+        <h1 className={styles.title}>{t('compareTitle')}</h1>
+        <p className={styles.subtitle}>{t('compareSubtitle')}</p>
       </section>
 
-      {/* Select selectors */}
-      <section className={`${styles.selectBar} glass-panel`}>
+      {/* Selectors Bar */}
+      <section className={`${styles.selectorsBar} glass-panel`}>
         <div className={styles.selectWrapper}>
-          <label className={styles.selectLabel}>Primary Pathway</label>
+          <label className={styles.label}>{t('selectPrimary')}</label>
           <select 
             value={leftPathId}
             onChange={(e) => setLeftPathId(e.target.value)}
             className={styles.dropdown}
           >
-            {roadmapList.map(r => (
-              <option key={r.id} value={r.id}>{r.title}</option>
-            ))}
+            {roadmapList.map(r => {
+              const loc = getLocalizedRoadmap(r);
+              return <option key={r.id} value={r.id}>{loc.title}</option>;
+            })}
           </select>
         </div>
 
-        <div className={styles.compareIconBtn}>
-          <ArrowRightLeft size={20} />
+        <div className={styles.vsBadge}>
+          <ArrowRightLeft size={18} />
+          <span>VS</span>
         </div>
 
         <div className={styles.selectWrapper}>
-          <label className={styles.selectLabel}>Secondary Pathway</label>
+          <label className={styles.label}>{t('selectSecondary')}</label>
           <select 
             value={rightPathId}
             onChange={(e) => setRightPathId(e.target.value)}
             className={styles.dropdown}
           >
-            {roadmapList.map(r => (
-              <option key={r.id} value={r.id}>{r.title}</option>
-            ))}
+            {roadmapList.map(r => {
+              const loc = getLocalizedRoadmap(r);
+              return <option key={r.id} value={r.id}>{loc.title}</option>;
+            })}
           </select>
         </div>
       </section>
@@ -132,14 +124,14 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
       {leftPathId === rightPathId ? (
         <div className={`${styles.alert} glass-panel`}>
           <ShieldAlert size={20} className={styles.alertIcon} />
-          <span>You have selected the same path. Please select two different tracks to compare metrics!</span>
+          <span>Please select two different career paths to compare metrics!</span>
         </div>
       ) : (
         /* Comparison Dashboard Grid */
         <section className={styles.dashboard}>
           <div className={styles.comparisonGrid}>
             
-            {/* Meta specs row */}
+            {/* Left Card */}
             <div className={`${styles.compareCard} glass-panel`}>
               <h3 className={styles.cardHeaderTitle}>{leftPath.title}</h3>
               <div className={styles.metricsList}>
@@ -147,7 +139,7 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                   <DollarSign size={16} className={styles.metricIconBlue} />
                   <div className={styles.metricInfo}>
                     <span className={styles.metricValue}>{leftMetrics.salary}</span>
-                    <span className={styles.metricLabel}>Average Salary</span>
+                    <span className={styles.metricLabel}>Average Range</span>
                   </div>
                 </div>
                 <div className={styles.metricRow}>
@@ -161,7 +153,7 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                   <Zap size={16} className={styles.metricIconGreen} />
                   <div className={styles.metricInfo}>
                     <span className={styles.metricValue}>{leftPath.stats?.duration}</span>
-                    <span className={styles.metricLabel}>Typical Duration</span>
+                    <span className={styles.metricLabel}>{t('estimatedDuration')}</span>
                   </div>
                 </div>
               </div>
@@ -171,17 +163,12 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                 <p className={styles.focusDesc}>{leftMetrics.primaryFocus}</p>
               </div>
 
-              <div className={styles.listsSection}>
-                <span className={styles.focusLabel}>Core Languages</span>
-                <p className={styles.itemTagString}>{leftMetrics.languages}</p>
-              </div>
-
-              <button className={`${styles.exploreBtn} gradient-border-btn`} onClick={() => onSelectRoadmap(leftPath.id)}>
-                Start {leftPath.title}
+              <button className={styles.exploreBtn} onClick={() => onSelectRoadmap(leftPath.id)}>
+                {t('openThisPath')}
               </button>
             </div>
 
-            {/* Right path card */}
+            {/* Right Card */}
             <div className={`${styles.compareCard} glass-panel`}>
               <h3 className={styles.cardHeaderTitle}>{rightPath.title}</h3>
               <div className={styles.metricsList}>
@@ -189,7 +176,7 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                   <DollarSign size={16} className={styles.metricIconBlue} />
                   <div className={styles.metricInfo}>
                     <span className={styles.metricValue}>{rightMetrics.salary}</span>
-                    <span className={styles.metricLabel}>Average Salary</span>
+                    <span className={styles.metricLabel}>Average Range</span>
                   </div>
                 </div>
                 <div className={styles.metricRow}>
@@ -203,7 +190,7 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                   <Zap size={16} className={styles.metricIconGreen} />
                   <div className={styles.metricInfo}>
                     <span className={styles.metricValue}>{rightPath.stats?.duration}</span>
-                    <span className={styles.metricLabel}>Typical Duration</span>
+                    <span className={styles.metricLabel}>{t('estimatedDuration')}</span>
                   </div>
                 </div>
               </div>
@@ -213,38 +200,43 @@ export default function RoadmapCompare({ onSelectRoadmap }) {
                 <p className={styles.focusDesc}>{rightMetrics.primaryFocus}</p>
               </div>
 
-              <div className={styles.listsSection}>
-                <span className={styles.focusLabel}>Core Languages</span>
-                <p className={styles.itemTagString}>{rightMetrics.languages}</p>
-              </div>
-
-              <button className={`${styles.exploreBtn} gradient-border-btn`} onClick={() => onSelectRoadmap(rightPath.id)}>
-                Start {rightPath.title}
+              <button className={styles.exploreBtn} onClick={() => onSelectRoadmap(rightPath.id)}>
+                {t('openThisPath')}
               </button>
             </div>
 
-            {/* Overlap / Shared Fundamentals segment */}
-            <div className={`${styles.overlapCard} glass-panel`}>
-              <div className={styles.overlapHeader}>
-                <Sparkles size={18} className={styles.overlapIcon} />
-                <h3 className={styles.overlapTitle}>Crossover Fundamentals</h3>
-              </div>
-              <p className={styles.overlapDesc}>
-                If you learn these shared core concepts, you will complete milestones on both pathways simultaneously.
-              </p>
-              <div className={styles.sharedTopicsGrid}>
-                {sharedTopics.map((topic, idx) => (
-                  <div key={idx} className={styles.sharedTopicBadge}>
-                    <BookOpen size={12} />
-                    <span>{topic}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          </div>
 
+          {/* Crossover Overlap Analysis */}
+          <div className={`${styles.crossoverCard} glass-panel`}>
+            <div className={styles.crossoverHeader}>
+              <Layers size={20} className={styles.crossoverIcon} />
+              <h3 className={styles.crossoverTitle}>{t('overlappingSkills')}</h3>
+            </div>
+            <p className={styles.crossoverDesc}>
+              {language === 'NP' 
+                ? `${leftPath.title} र ${rightPath.title} दुवैमा आवश्यक साझा आधारभूत सीपहरू:`
+                : `Core fundamental skills shared between ${leftPath.title} and ${rightPath.title}:`}
+            </p>
+
+            <div className={styles.sharedTags}>
+              {sharedOverlap.length > 0 ? (
+                sharedOverlap.map(skill => (
+                  <span key={skill} className={styles.skillPill}>
+                    <BookOpen size={12} />
+                    <span>{skill.toUpperCase()}</span>
+                  </span>
+                ))
+              ) : (
+                <span className={styles.noOverlap}>
+                  {language === 'NP' ? 'अद्वितीय विशेषीकृत क्षेत्रहरू - साझा आधारभूत सीपहरू फरक छन्।' : 'Distinct specialized domains — fundamental prerequisites differ.'}
+                </span>
+              )}
+            </div>
           </div>
         </section>
       )}
+
     </div>
   );
 }

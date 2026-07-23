@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { translations } from '../data/translations';
 
 const ProgressContext = createContext();
 
@@ -25,9 +26,18 @@ export const ProgressProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem('roadmap_theme');
-      return saved || 'dark';
+      return saved || 'light';
     } catch (e) {
-      return 'dark';
+      return 'light';
+    }
+  });
+
+  const [language, setLanguage] = useState(() => {
+    try {
+      const saved = localStorage.getItem('yojanamap_language');
+      return saved || 'EN';
+    } catch (e) {
+      return 'EN';
     }
   });
 
@@ -40,8 +50,38 @@ export const ProgressProvider = ({ children }) => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem('yojanamap_language', language);
+    document.documentElement.setAttribute('lang', language === 'NP' ? 'ne' : 'en');
+  }, [language]);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const toggleLanguage = () => {
+    setLanguage((prev) => (prev === 'EN' ? 'NP' : 'EN'));
+  };
+
+  // Helper translation lookup function
+  const t = (key) => {
+    const dict = translations[language] || translations['EN'];
+    return dict[key] || translations['EN'][key] || key;
+  };
+
+  // Helper function to get localized roadmap data
+  const getLocalizedRoadmap = (roadmap) => {
+    if (!roadmap) return null;
+    const roadmapLocales = translations[language]?.roadmaps?.[roadmap.id] || translations['EN']?.roadmaps?.[roadmap.id];
+    
+    if (!roadmapLocales) return roadmap;
+
+    return {
+      ...roadmap,
+      title: roadmapLocales.title || roadmap.title,
+      tagline: roadmapLocales.tagline || roadmap.tagline,
+      description: roadmapLocales.description || roadmap.description,
+    };
   };
 
   const updateNodeStatus = (roadmapId, nodeId, status) => {
@@ -89,7 +129,12 @@ export const ProgressProvider = ({ children }) => {
     <ProgressContext.Provider value={{
       progress,
       theme,
+      language,
       toggleTheme,
+      toggleLanguage,
+      setLanguage,
+      t,
+      getLocalizedRoadmap,
       updateNodeStatus,
       getNodeStatus,
       getRoadmapProgressStats,

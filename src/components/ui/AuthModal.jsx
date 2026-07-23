@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useProgress } from '../../context/ProgressContext';
 import { X, Lock, Mail, ArrowRight, UserCheck, ShieldCheck } from 'lucide-react';
 import styles from './AuthModal.module.css';
 
 export default function AuthModal({ isOpen, onClose }) {
+  const { t } = useProgress();
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +30,9 @@ export default function AuthModal({ isOpen, onClose }) {
               <ShieldCheck size={20} className={styles.badgeIcon} />
             </div>
             <div>
-              <h3 className={styles.title}>{isSignUp ? 'Create Account' : 'Welcome Back'}</h3>
+              <h3 className={styles.title}>{isSignUp ? t('createAccount') : t('welcomeBack')}</h3>
               <p className={styles.subtitle}>
-                {isSignUp ? 'Track your roadmap progress across all devices.' : 'Sign in to access your saved career progress.'}
+                {isSignUp ? t('authSubtitleReg') : t('authSubtitleSign')}
               </p>
             </div>
           </div>
@@ -43,13 +45,13 @@ export default function AuthModal({ isOpen, onClose }) {
           {submitted ? (
             <div className={styles.successState}>
               <UserCheck size={44} className={styles.checkIcon} />
-              <h4>{isSignUp ? 'Account Created Successfully!' : 'Logged In Successfully!'}</h4>
+              <h4>{isSignUp ? t('createAccount') : t('welcomeBack')}</h4>
               <p>Syncing your saved progress and roadmap trackers...</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Email Address</label>
+                <label className={styles.label}>{t('emailLabel')}</label>
                 <div className={styles.inputWrapper}>
                   <Mail size={18} className={styles.fieldIcon} />
                   <input 
@@ -64,7 +66,7 @@ export default function AuthModal({ isOpen, onClose }) {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Password</label>
+                <label className={styles.label}>{t('passwordLabel')}</label>
                 <div className={styles.inputWrapper}>
                   <Lock size={18} className={styles.fieldIcon} />
                   <input 
@@ -79,7 +81,7 @@ export default function AuthModal({ isOpen, onClose }) {
               </div>
 
               <button type="submit" className={styles.submitBtn}>
-                <span>{isSignUp ? 'Sign Up for YojanaMap' : 'Sign In'}</span>
+                <span>{isSignUp ? t('submitSignUp') : t('submitSignIn')}</span>
                 <ArrowRight size={16} />
               </button>
             </form>
@@ -92,7 +94,7 @@ export default function AuthModal({ isOpen, onClose }) {
             className={styles.switchBtn} 
             onClick={() => setIsSignUp(!isSignUp)}
           >
-            {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+            {isSignUp ? t('hasAccount') : t('noAccount')}
           </button>
         </div>
       </div>

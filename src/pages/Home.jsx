@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useProgress } from '../context/ProgressContext';
 import { roadmapList } from '../data';
 import { 
   Award, Landmark, BookOpen, ShieldAlert, Compass, Sparkles, Layout, Server, 
@@ -10,6 +11,7 @@ import CareerQuizModal from '../components/ui/CareerQuizModal';
 import styles from './Home.module.css';
 
 export default function Home({ onSelectRoadmap }) {
+  const { language, t, getLocalizedRoadmap } = useProgress();
   const [activeCategory, setActiveCategory] = useState('all'); // 'all' | 'sarkari' | 'tech_creative' | 'role' | 'skill'
   const [selectedLevel, setSelectedLevel] = useState('all'); // 'all' | 'beginner' | 'intermediate' | 'advanced'
   const [quizModalOpen, setQuizModalOpen] = useState(false);
@@ -38,7 +40,7 @@ export default function Home({ onSelectRoadmap }) {
     }
   };
 
-  const filteredAllRoadmaps = roadmapList.filter((roadmap) => {
+  const filteredAllRoadmaps = roadmapList.map((r) => getLocalizedRoadmap(r)).filter((roadmap) => {
     let matchesCategory = true;
     if (activeCategory !== 'all') {
       if (activeCategory === 'tech_creative') {
@@ -66,6 +68,17 @@ export default function Home({ onSelectRoadmap }) {
     }
   };
 
+  const getLocalizedDifficulty = (diff) => {
+    if (language === 'NP') {
+      const d = diff?.toLowerCase();
+      if (d === 'beginner') return 'सुरुवाती';
+      if (d === 'intermediate') return 'मध्यम';
+      if (d === 'advanced') return 'उच्च';
+      if (d === 'expert') return 'विशेषज्ञ';
+    }
+    return diff;
+  };
+
   return (
     <div className={styles.homeContainer}>
       
@@ -74,20 +87,20 @@ export default function Home({ onSelectRoadmap }) {
         <div className={styles.heroGrid}>
           {/* Hero Left Content */}
           <div className={styles.heroLeft}>
-            <span className={styles.tagline}>CAREER CLARITY FOR NEPALI STUDENTS</span>
+            <span className={styles.tagline}>{t('heroTagline')}</span>
             <h1 className={styles.heroHeading}>
-              Choose a goal.<br />
-              Follow a clear path.
+              {t('heroTitle1')}<br />
+              {t('heroTitle2')}
             </h1>
             <p className={styles.heroSubtitle}>
-              Step-by-step roadmaps with affordable, local and global learning resources.
+              {t('heroSubtitle')}
             </p>
             <div className={styles.heroActions}>
               <button className={styles.primaryBtn} onClick={scrollToCatalog}>
-                Explore roadmaps
+                {t('exploreRoadmaps')}
               </button>
               <button className={styles.secondaryBtn} onClick={() => setQuizModalOpen(true)}>
-                Take career quiz
+                {t('takeQuiz')}
               </button>
             </div>
           </div>
@@ -99,10 +112,10 @@ export default function Home({ onSelectRoadmap }) {
         </div>
       </section>
 
-      {/* Main "Find your path" Section: Direct Filter Catalog */}
+      {/* Main "Find your path" Section */}
       <section id="find-your-path" className={styles.findPathSection}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Find your path</h2>
+          <h2 className={styles.sectionTitle}>{t('findYourPath')}</h2>
         </div>
 
         {/* Expanded All Pathways Filter Catalog */}
@@ -113,31 +126,31 @@ export default function Home({ onSelectRoadmap }) {
                 className={`${styles.tabBtn} ${activeCategory === 'all' ? styles.activeTab : ''}`}
                 onClick={() => setActiveCategory('all')}
               >
-                All Pathways ({roadmapList.length})
+                {t('allPathways')} ({roadmapList.length})
               </button>
               <button 
                 className={`${styles.tabBtn} ${activeCategory === 'sarkari' ? styles.activeTab : ''}`}
                 onClick={() => setActiveCategory('sarkari')}
               >
-                Sarkari & Lok Sewa
+                {t('sarkariTab')}
               </button>
               <button 
                 className={`${styles.tabBtn} ${activeCategory === 'tech_creative' ? styles.activeTab : ''}`}
                 onClick={() => setActiveCategory('tech_creative')}
               >
-                Creative & UX
+                {t('creativeTab')}
               </button>
               <button 
                 className={`${styles.tabBtn} ${activeCategory === 'role' ? styles.activeTab : ''}`}
                 onClick={() => setActiveCategory('role')}
               >
-                Software Engineering
+                {t('softwareTab')}
               </button>
               <button 
                 className={`${styles.tabBtn} ${activeCategory === 'skill' ? styles.activeTab : ''}`}
                 onClick={() => setActiveCategory('skill')}
               >
-                Specialized Tools
+                {t('skillsTab')}
               </button>
             </div>
 
@@ -147,10 +160,10 @@ export default function Home({ onSelectRoadmap }) {
                 onChange={(e) => setSelectedLevel(e.target.value)}
                 className={styles.levelSelect}
               >
-                <option value="all">All Difficulty Levels</option>
-                <option value="beginner">Beginner Friendly</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced & Expert</option>
+                <option value="all">{t('allDifficulty')}</option>
+                <option value="beginner">{t('beginner')}</option>
+                <option value="intermediate">{t('intermediate')}</option>
+                <option value="advanced">{t('advanced')}</option>
               </select>
             </div>
           </div>
@@ -166,14 +179,14 @@ export default function Home({ onSelectRoadmap }) {
                   <div className={styles.cardIconBox}>
                     {getIcon(roadmap.icon)}
                   </div>
-                  <span className={styles.difficultyBadge}>{roadmap.stats?.difficulty}</span>
+                  <span className={styles.difficultyBadge}>{getLocalizedDifficulty(roadmap.stats?.difficulty)}</span>
                 </div>
                 <h4 className={styles.fullCardTitle}>{roadmap.title}</h4>
                 <p className={styles.fullCardDesc}>{roadmap.description}</p>
                 <div className={styles.fullCardMeta}>
                   <span>{roadmap.stats?.duration}</span>
                   <span>•</span>
-                  <span>{roadmap.stats?.topics} Topics</span>
+                  <span>{roadmap.stats?.topics} {t('topicsCount')}</span>
                 </div>
               </div>
             ))}

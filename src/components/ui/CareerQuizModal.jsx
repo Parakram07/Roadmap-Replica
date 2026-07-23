@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, ArrowRight, HelpCircle, Award, Compass, Sparkles } from 'lucide-react';
+import { useProgress } from '../../context/ProgressContext';
+import { X, CheckCircle, ArrowRight, Award, Compass, Sparkles } from 'lucide-react';
 import styles from './CareerQuizModal.module.css';
 
 export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
+  const { language, t, getLocalizedRoadmap } = useProgress();
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({
     domain: '',
@@ -30,20 +32,24 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
   const getRecommendation = () => {
     const { domain, duration, workStyle } = answers;
 
+    let id = 'frontend';
     if (domain === 'sarkari') {
-      if (workStyle === 'banking') return { id: 'banking', title: 'Banking Exams (NRB & Commercial)' };
-      if (workStyle === 'teaching') return { id: 'teaching', title: 'Teaching License (TSC)' };
-      if (workStyle === 'security') return { id: 'policearmy', title: 'Police / Army Officer' };
-      return { id: 'loksewa', title: 'Lok Sewa Officer (Sakha Adhikrit)' };
+      if (workStyle === 'banking') id = 'banking';
+      else if (workStyle === 'teaching') id = 'teaching';
+      else if (workStyle === 'security') id = 'policearmy';
+      else id = 'loksewa';
     } else if (domain === 'tech') {
-      if (workStyle === 'data') return { id: 'datascientist', title: 'Data Scientist / AI' };
-      if (workStyle === 'mobile') return { id: 'mobile', title: 'Mobile Developer' };
-      if (workStyle === 'backend') return { id: 'backend', title: 'Backend Developer' };
-      return { id: 'frontend', title: 'Frontend Developer' };
+      if (workStyle === 'data') id = 'datascientist';
+      else if (workStyle === 'mobile') id = 'mobile';
+      else if (workStyle === 'backend') id = 'backend';
+      else id = 'frontend';
     } else {
-      if (workStyle === 'video') return { id: 'videocreator', title: 'Video Creator & Editor' };
-      return { id: 'uiux', title: 'UI/UX Product Designer' };
+      if (workStyle === 'video') id = 'videocreator';
+      else id = 'uiux';
     }
+
+    const loc = translations[language]?.roadmaps?.[id] || translations['EN']?.roadmaps?.[id];
+    return { id, title: loc?.title || id };
   };
 
   const rec = getRecommendation();
@@ -55,8 +61,8 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
           <div className={styles.titleGroup}>
             <Sparkles size={20} className={styles.sparkleIcon} />
             <div>
-              <h3 className={styles.title}>Smart Career Quiz</h3>
-              <p className={styles.subtitle}>Discover your ideal preparation roadmap in 3 questions.</p>
+              <h3 className={styles.title}>{t('quizTitle')}</h3>
+              <p className={styles.subtitle}>{t('quizSubtitle')}</p>
             </div>
           </div>
           <button className={styles.closeBtn} onClick={onClose} aria-label="Close Quiz">
@@ -73,7 +79,7 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
 
           {step === 1 && (
             <div className={styles.questionStep}>
-              <h4 className={styles.questionText}>1. What is your primary career goal?</h4>
+              <h4 className={styles.questionText}>{t('q1Title')}</h4>
               <div className={styles.optionsGrid}>
                 <button 
                   className={`${styles.optionCard} ${answers.domain === 'sarkari' ? styles.selected : ''}`}
@@ -81,8 +87,8 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                 >
                   <Award size={24} className={styles.optionIcon} />
                   <div className={styles.optionText}>
-                    <strong>Sarkari / Lok Sewa</strong>
-                    <span>Civil Service, Banking & Public Security</span>
+                    <strong>{t('q1Option1Title')}</strong>
+                    <span>{t('q1Option1Desc')}</span>
                   </div>
                 </button>
 
@@ -92,8 +98,8 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                 >
                   <Compass size={24} className={styles.optionIcon} />
                   <div className={styles.optionText}>
-                    <strong>Tech & Engineering</strong>
-                    <span>Software, Web, Mobile & AI systems</span>
+                    <strong>{t('q1Option2Title')}</strong>
+                    <span>{t('q1Option2Desc')}</span>
                   </div>
                 </button>
 
@@ -103,8 +109,8 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                 >
                   <Sparkles size={24} className={styles.optionIcon} />
                   <div className={styles.optionText}>
-                    <strong>Creative & Design</strong>
-                    <span>UI/UX Design, Media & Content</span>
+                    <strong>{t('q1Option3Title')}</strong>
+                    <span>{t('q1Option3Desc')}</span>
                   </div>
                 </button>
               </div>
@@ -113,15 +119,15 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
 
           {step === 2 && (
             <div className={styles.questionStep}>
-              <h4 className={styles.questionText}>2. How much time can you dedicate daily?</h4>
+              <h4 className={styles.questionText}>{t('q2Title')}</h4>
               <div className={styles.optionsGrid}>
                 <button 
                   className={`${styles.optionCard} ${answers.duration === 'part' ? styles.selected : ''}`}
                   onClick={() => handleSelectOption('duration', 'part')}
                 >
                   <div className={styles.optionText}>
-                    <strong>2 - 3 Hours / Day</strong>
-                    <span>Steady progress while studying/working</span>
+                    <strong>{t('q2Option1Title')}</strong>
+                    <span>{t('q2Option1Desc')}</span>
                   </div>
                 </button>
 
@@ -130,8 +136,8 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                   onClick={() => handleSelectOption('duration', 'full')}
                 >
                   <div className={styles.optionText}>
-                    <strong>5+ Hours / Day</strong>
-                    <span>Full-time intensive preparation</span>
+                    <strong>{t('q2Option2Title')}</strong>
+                    <span>{t('q2Option2Desc')}</span>
                   </div>
                 </button>
               </div>
@@ -140,36 +146,36 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
 
           {step === 3 && (
             <div className={styles.questionStep}>
-              <h4 className={styles.questionText}>3. Select your preferred work style:</h4>
+              <h4 className={styles.questionText}>{t('q3Title')}</h4>
               <div className={styles.optionsGrid}>
                 {answers.domain === 'sarkari' ? (
                   <>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'loksewa' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'loksewa')}>
-                      <span>Administrative Officer</span>
+                      <span>{language === 'NP' ? 'निजामती सेवा अधिकृत' : 'Administrative Officer'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'banking' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'banking')}>
-                      <span>Banking & Financial Sector</span>
+                      <span>{language === 'NP' ? 'बैंकिङ र वित्तीय क्षेत्र' : 'Banking & Financial Sector'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'teaching' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'teaching')}>
-                      <span>School Teaching & Education</span>
+                      <span>{language === 'NP' ? 'विद्यालय शिक्षण' : 'School Teaching & Education'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'security' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'security')}>
-                      <span>Police / Defense Forces</span>
+                      <span>{language === 'NP' ? 'प्रहरी तथा सुरक्षा निकाय' : 'Police / Defense Forces'}</span>
                     </button>
                   </>
                 ) : (
                   <>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'frontend' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'frontend')}>
-                      <span>Visual Web & Interfaces</span>
+                      <span>{language === 'NP' ? 'वेब र इन्टरफेस डिजाइन' : 'Visual Web & Interfaces'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'data' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'data')}>
-                      <span>Data Analysis & AI</span>
+                      <span>{language === 'NP' ? 'डाटा विश्लेषण र AI' : 'Data Analysis & AI'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'uiux' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'uiux')}>
-                      <span>Product & UX Design</span>
+                      <span>{language === 'NP' ? 'उत्पादन तथा UX डिजाइन' : 'Product & UX Design'}</span>
                     </button>
                     <button className={`${styles.optionCard} ${answers.workStyle === 'video' ? styles.selected : ''}`} onClick={() => handleSelectOption('workStyle', 'video')}>
-                      <span>Video Production & Editing</span>
+                      <span>{language === 'NP' ? 'भिडियो सम्पादन र मिडिया' : 'Video Production & Editing'}</span>
                     </button>
                   </>
                 )}
@@ -180,11 +186,11 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
           {step === 4 && (
             <div className={styles.resultStep}>
               <CheckCircle size={48} className={styles.resultCheck} />
-              <h4 className={styles.resultTitle}>Recommended Path For You</h4>
+              <h4 className={styles.resultTitle}>{t('recTitle')}</h4>
               <div className={styles.recCard}>
-                <span className={styles.recBadge}>Top Match</span>
+                <span className={styles.recBadge}>{t('topMatch')}</span>
                 <h3 className={styles.recName}>{rec.title}</h3>
-                <p className={styles.recDesc}>Matches your target sector and daily time commitment.</p>
+                <p className={styles.recDesc}>{t('recDesc')}</p>
               </div>
 
               <div className={styles.resultActions}>
@@ -195,10 +201,10 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                     onSelectRoadmap(rec.id);
                   }}
                 >
-                  <span>Open Recommended Roadmap</span>
+                  <span>{t('openRecPath')}</span>
                   <ArrowRight size={18} />
                 </button>
-                <button className={styles.retakeBtn} onClick={handleReset}>Retake Quiz</button>
+                <button className={styles.retakeBtn} onClick={handleReset}>{t('retakeQuiz')}</button>
               </div>
             </div>
           )}
@@ -207,7 +213,7 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
         <div className={styles.footer}>
           {step > 1 && step <= 3 && (
             <button className={styles.backBtn} onClick={() => setStep((prev) => prev - 1)}>
-              Back
+              {t('backBtn')}
             </button>
           )}
 
@@ -227,7 +233,7 @@ export default function CareerQuizModal({ isOpen, onClose, onSelectRoadmap }) {
                 }
               }}
             >
-              <span>{step === 3 ? 'Get Recommendation' : 'Next Question'}</span>
+              <span>{step === 3 ? t('getRec') : t('nextQuestion')}</span>
               <ArrowRight size={16} />
             </button>
           )}
